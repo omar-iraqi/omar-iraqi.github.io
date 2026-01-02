@@ -1,21 +1,15 @@
 # Site settings
-title: "Omar IRAQI"
-description: "Pentester Junior | Red Team | Active Directory | Web"
+title: "Omar Iraqi"
+description: "Pentester Junior | Red Team | Active Directory | Web Security"
+permalink: ':title:output_ext'
+
+baseurl: ""   # site à la racine (repo = omar-iraqi.github.io)
 url: "https://omar-iraqi.github.io"
-baseurl: ""   # laisse vide si repo = TONPSEUDO.github.io
 
-author:
-  name: "Omar IRAQI"
-  bio: "Pentest & Red Team | eJPT | CRTP"
-  image: "assets/img/avatar.jpg"
+logo: "/assets/img/branding/logo-full.svg"
+logo-icon: "/assets/img/branding/logo-icon.svg"
+logo-icon-SEO: "/assets/img/branding/logo-icon-black.png"
 
-social:
-  linkedin: wait...
-  email: omar.iraqih@proton.me
-
-logo: "/assets/img/branding/MVM-logo-full.svg"
-logo-icon: "/assets/img/branding/MVM-symbol.svg"
-logo-icon-SEO: "/assets/img/branding/MVM-symbol-black.png" # must be a non SVG file
 
 # Night/Dark mode
 # Default mode is "auto", "auto" is for auto nightshift
