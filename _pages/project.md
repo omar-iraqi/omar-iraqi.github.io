@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Projects
-permalink: /projects/
+permalink: projects:output_ext
 ---
 
 ## Active Directory Security
