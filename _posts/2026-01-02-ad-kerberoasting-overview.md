@@ -1,8 +1,14 @@
 ---
 layout: post
-title: "Active Directory – Kerberoasting (Overview)"
-date: 2026-01-02
-tags: [ActiveDirectory, RedTeam, Pentest]
+read_time: true
+show_date: true
+title: "Mon premier writeup"
+date: 2021-04-20
+img: posts/20210420/post8-rembrandt.jpg
+tags: [copyright, creativity, redteam]
+category: opinion
+author: Omar Iraqi
+description: "la description"
 ---
 
 ## Context
