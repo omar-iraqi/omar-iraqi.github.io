@@ -3,7 +3,7 @@ layout: post
 read_time: true
 show_date: true
 title: "Mon premier writeup"
-date: 2021-04-20
+date: 2026-01-01
 img: posts/20210420/post8-rembrandt.jpg
 tags: [copyright, creativity, redteam]
 category: opinion
