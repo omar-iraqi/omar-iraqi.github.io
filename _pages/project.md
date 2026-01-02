@@ -1,7 +1,8 @@
 ---
-layout: page
+layout: menu-page
 title: Projects
 permalink: projects:output_ext
+infinite: yes
 ---
 
 ## Active Directory Security
