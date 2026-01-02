@@ -1,7 +1,7 @@
 ---
 layout: menu-page
 title: Projects
-permalink: projects:output_ext
+permalink: project:output_ext
 infinite: yes
 ---
 
