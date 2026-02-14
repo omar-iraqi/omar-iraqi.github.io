@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>💘 Pour toi</title>
+  <title>💘 Pour ma beauté</title>
   <style>
     :root{
       --bg1:#120015;
@@ -318,7 +318,7 @@
         <div class="brand">
           <span style="font-size:18px">💘</span>
           <span>Pour toi</span>
-          <span class="pill" id="modePill">mode : login</span>
+          <span class="pill" id="modePill">login</span>
         </div>
         <div class="row">
           <button class="btn" id="btnHearts">+ coeurs</button>
@@ -333,9 +333,7 @@
           <h1 class="loginTitle">Accès privé</h1>
           <p class="loginHint">
             Une petite porte avant la surprise…<br>
-            (Indice : c’est très simple 😉)
           </p>
-          <p class="tiny">Astuce : tu peux remplacer le texte et les images plus bas dans le code.</p>
         </div>
 
         <div class="loginRight">
@@ -343,16 +341,15 @@
 
           <div>
             <label for="username">Login</label>
-            <input id="username" type="text" autocomplete="username" placeholder="admin" />
+            <input id="username" type="text" autocomplete="username" placeholder="username" />
           </div>
 
           <div>
             <label for="password">Mot de passe</label>
-            <input id="password" type="password" autocomplete="current-password" placeholder="admin" />
+            <input id="password" type="password" autocomplete="current-password" placeholder="password" />
           </div>
 
           <button class="btn primary" id="btnLogin">Entrer</button>
-          <p class="tiny">⚠️ Login côté navigateur (pas sécurisé). Pour sécurisé : faire côté serveur.</p>
         </div>
       </div>
 
@@ -365,18 +362,10 @@
 
         <div class="grid">
           <div class="panel">
-            <h2>📸 Nos photos</h2>
+            <h2>📸 </h2>
             <div class="gallery" id="gallery"></div>
             <p class="tiny" style="margin-top:10px;">
               Tu peux mettre des images locales (ex: <code>images/1.jpg</code>) ou des URLs.
-            </p>
-          </div>
-
-          <div class="panel">
-            <h2>🐸 Petit bonus</h2>
-            <p class="miniNote">
-              Clique sur “+ coeurs” en haut pour en mettre partout.<br>
-              (Et si tu veux, je peux aussi te faire une version avec une mini énigme à résoudre.)
             </p>
           </div>
         </div>
@@ -392,13 +381,14 @@
     // --------------------------
     // 1) PERSONNALISE ICI
     // --------------------------
-    const LOVE_MESSAGE = `Mio angelo, cuore della mia vita!
+    const LOVE_MESSAGE = `Bonjour ma Vida 
 
-Ti amo da un’eternità e ti amerò per un’eternità ancora.
-Se dovessi scegliere una sola cosa al mondo, sceglierei te, senza esitazione.
+Comment je vais faire dans 10 ans pour avoir encore de l’inspiration pour te dire je t’aime differement.
+Je peux te le dire dans toutes les langues. Alors je te propose de lire ce message d’amour dans une langue différente pour changer. 
 
-Sei nel mio cuore per sempre.
-Un’infinità di baci… e buon appetito. 💘`;
+otiteppa noub e …olegna oim ,icab id àtinifni’nU
+.em rep etnatropmi ies otnauq aippas ut ehc orepS .és noc atunet àig ah it eroma oim li éhcrep ,erappacs rep idrat opport è iamro :erpmes rep erouc oim len iviV .enoizatise aznes ,et iereilgecs ,odnom la asoc alos anu ereilgecs issevod eS .ottaf aibba im ativ al ehc osoizerp ùip onod li ieS .arocna àtinrete’nu rep òrema it e àtinrete’nu ad oma iT
+!ativ aim alled erouc ,oim eromA 🥰`;
 
     // Mets ici tes images (chemins locaux ou URLs)
     const IMAGES = [
@@ -409,8 +399,8 @@ Un’infinità di baci… e buon appetito. 💘`;
     ];
 
     // Identifiants demandés
-    const VALID_USER = "admin";
-    const VALID_PASS = "admin";
+    const VALID_USER = "nao";
+    const VALID_PASS = "2026";
 
     // --------------------------
     // 2) UI + LOGIN
