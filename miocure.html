@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>💘 Pour toi</title>
+  <style>
+    :root{
+      --bg1:#120015;
+      --bg2:#2a001e;
+      --card: rgba(255,255,255,.10);
+      --card2: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --accent:#ff2d55;
+      --accent2:#ff5e7a;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 20% 10%, #3b0030 0%, transparent 55%),
+                  radial-gradient(1000px 700px at 80% 20%, #2b003b 0%, transparent 55%),
+                  linear-gradient(160deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    /* Floating hearts layer */
+    #hearts{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:0;
+    }
+    .heart{
+      position:absolute;
+      bottom:-40px;
+      font-size: 18px;
+      opacity:.85;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.25));
+      animation: floatUp linear forwards;
+      transform: translateZ(0);
+    }
+    @keyframes floatUp{
+      from{ transform: translate3d(0,0,0) scale(1) rotate(0deg); opacity:.0;}
+      10%{opacity:.85}
+      to{ transform: translate3d(var(--drift), calc(-100vh - 100px), 0) scale(var(--scale)) rotate(var(--rot)); opacity:0;}
+    }
+
+    /* Layout */
+    .wrap{
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding: 28px 16px;
+      position:relative;
+      z-index:1;
+    }
+
+    .card{
+      width:min(920px, 100%);
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow:hidden;
+    }
+
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 18px;
+      background: linear-gradient(90deg, rgba(255,45,85,.15), rgba(255,255,255,.02));
+      border-bottom: 1px solid rgba(255,255,255,.14);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .pill{
+      font-size:12px;
+      color: var(--muted);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.12);
+    }
+    .btn{
+      appearance:none;
+      border:none;
+      border-radius: 12px;
+      padding: 10px 12px;
+      cursor:pointer;
+      font-weight:600;
+      color: var(--text);
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      transition: transform .08s ease, background .15s ease;
+    }
+    .btn:hover{ background: rgba(255,255,255,.14); }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    /* LOGIN */
+    #loginView{
+      padding: 28px 18px 26px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 820px){
+      #loginView{ grid-template-columns: 1fr; }
+    }
+    .loginLeft{
+      padding: 18px;
+      border-radius: calc(var(--radius) - 6px);
+      background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.06));
+      border: 1px solid rgba(255,255,255,.14);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap: 14px;
+      min-height: 320px;
+    }
+    .bigHeart{
+      width: 140px;
+      height: 140px;
+      margin: 4px 0 2px;
+      position:relative;
+      transform: rotate(-45deg);
+      background: linear-gradient(135deg, #ff2d55, #ff6a88);
+      border-radius: 24px 24px 14px 24px;
+      box-shadow: 0 20px 60px rgba(255,45,85,.35);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    .bigHeart::before,
+    .bigHeart::after{
+      content:"";
+      position:absolute;
+      width:140px;
+      height:140px;
+      background: inherit;
+      border-radius:50%;
+    }
+    .bigHeart::before{ top:-70px; left:0; }
+    .bigHeart::after{ left:70px; top:0; }
+    @keyframes pulse{
+      0%,100%{ transform: rotate(-45deg) scale(1); }
+      50%{ transform: rotate(-45deg) scale(1.05); }
+    }
+    .loginTitle{
+      font-size: 28px;
+      line-height:1.1;
+      margin: 0;
+    }
+    .loginHint{
+      margin: 0;
+      color: var(--muted);
+      line-height:1.45;
+    }
+
+    .loginRight{
+      padding: 18px;
+      border-radius: calc(var(--radius) - 6px);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.14);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap: 10px;
+      min-height: 320px;
+    }
+    label{ font-size: 13px; color: var(--muted); }
+    input{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline:none;
+    }
+    input:focus{
+      border-color: rgba(255,45,85,.6);
+      box-shadow: 0 0 0 4px rgba(255,45,85,.18);
+    }
+    .row{ display:flex; gap:10px; }
+    .error{
+      display:none;
+      color: #ffd1d9;
+      background: rgba(255,45,85,.18);
+      border: 1px solid rgba(255,45,85,.35);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height:1.35;
+    }
+
+    /* LOVE PAGE */
+    #loveView{
+      display:none;
+      padding: 22px 18px 20px;
+    }
+    .hero{
+      padding: 18px;
+      border-radius: calc(var(--radius) - 6px);
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,45,85,.18), rgba(0,0,0,.06));
+      margin-bottom: 14px;
+    }
+    .hero h1{
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height:1.1;
+    }
+    .hero p{
+      margin: 0;
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 16px;
+      white-space: pre-wrap;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+      align-items:start;
+    }
+    @media (max-width: 920px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+    .panel{
+      padding: 16px;
+      border-radius: calc(var(--radius) - 6px);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+    }
+    .panel h2{
+      margin:0 0 10px;
+      font-size: 16px;
+      color: rgba(255,255,255,.90);
+    }
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 520px){
+      .gallery{ grid-template-columns: 1fr; }
+    }
+    .shot{
+      position:relative;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      aspect-ratio: 4 / 3;
+    }
+    .shot img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.02);
+      transition: transform .25s ease;
+    }
+    .shot:hover img{ transform: scale(1.07); }
+    .caption{
+      position:absolute;
+      left:10px; right:10px; bottom:10px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.16);
+      font-size: 12px;
+      color: rgba(255,255,255,.88);
+      backdrop-filter: blur(8px);
+    }
+
+    .miniNote{
+      font-size: 14px;
+      color: var(--muted);
+      line-height:1.55;
+      margin: 0;
+    }
+
+    .footer{
+      padding: 14px 18px 18px;
+      color: rgba(255,255,255,.65);
+      font-size: 12px;
+      text-align:center;
+    }
+    .tiny{ font-size: 12px; color: rgba(255,255,255,.62); }
+  </style>
+</head>
+<body>
+  <div id="hearts" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <section class="card" role="application" aria-label="Page romantique">
+      <div class="topbar">
+        <div class="brand">
+          <span style="font-size:18px">💘</span>
+          <span>Pour toi</span>
+          <span class="pill" id="modePill">mode : login</span>
+        </div>
+        <div class="row">
+          <button class="btn" id="btnHearts">+ coeurs</button>
+          <button class="btn" id="btnLogout" style="display:none;">Déconnexion</button>
+        </div>
+      </div>
+
+      <!-- LOGIN VIEW -->
+      <div id="loginView">
+        <div class="loginLeft">
+          <div class="bigHeart" aria-hidden="true"></div>
+          <h1 class="loginTitle">Accès privé</h1>
+          <p class="loginHint">
+            Une petite porte avant la surprise…<br>
+            (Indice : c’est très simple 😉)
+          </p>
+          <p class="tiny">Astuce : tu peux remplacer le texte et les images plus bas dans le code.</p>
+        </div>
+
+        <div class="loginRight">
+          <div class="error" id="loginError">Identifiants incorrects. Réessaie doucement 💗</div>
+
+          <div>
+            <label for="username">Login</label>
+            <input id="username" type="text" autocomplete="username" placeholder="admin" />
+          </div>
+
+          <div>
+            <label for="password">Mot de passe</label>
+            <input id="password" type="password" autocomplete="current-password" placeholder="admin" />
+          </div>
+
+          <button class="btn primary" id="btnLogin">Entrer</button>
+          <p class="tiny">⚠️ Login côté navigateur (pas sécurisé). Pour sécurisé : faire côté serveur.</p>
+        </div>
+      </div>
+
+      <!-- LOVE VIEW -->
+      <div id="loveView">
+        <div class="hero">
+          <h1>Mon amour 💗</h1>
+          <p id="loveText"></p>
+        </div>
+
+        <div class="grid">
+          <div class="panel">
+            <h2>📸 Nos photos</h2>
+            <div class="gallery" id="gallery"></div>
+            <p class="tiny" style="margin-top:10px;">
+              Tu peux mettre des images locales (ex: <code>images/1.jpg</code>) ou des URLs.
+            </p>
+          </div>
+
+          <div class="panel">
+            <h2>🐸 Petit bonus</h2>
+            <p class="miniNote">
+              Clique sur “+ coeurs” en haut pour en mettre partout.<br>
+              (Et si tu veux, je peux aussi te faire une version avec une mini énigme à résoudre.)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        Fait avec ❤️ — et beaucoup de coeurs.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // --------------------------
+    // 1) PERSONNALISE ICI
+    // --------------------------
+    const LOVE_MESSAGE = `Mio angelo, cuore della mia vita!
+
+Ti amo da un’eternità e ti amerò per un’eternità ancora.
+Se dovessi scegliere una sola cosa al mondo, sceglierei te, senza esitazione.
+
+Sei nel mio cuore per sempre.
+Un’infinità di baci… e buon appetito. 💘`;
+
+    // Mets ici tes images (chemins locaux ou URLs)
+    const IMAGES = [
+      { src: "images/photo1.jpg", caption: "Nous 💗" },
+      { src: "images/photo2.jpg", caption: "Un souvenir" },
+      { src: "images/photo3.jpg", caption: "Mon namoureuse" },
+      { src: "images/photo4.jpg", caption: "Ma grenouille 🐸" }
+    ];
+
+    // Identifiants demandés
+    const VALID_USER = "admin";
+    const VALID_PASS = "admin";
+
+    // --------------------------
+    // 2) UI + LOGIN
+    // --------------------------
+    const loginView = document.getElementById("loginView");
+    const loveView  = document.getElementById("loveView");
+    const modePill  = document.getElementById("modePill");
+    const btnLogout = document.getElementById("btnLogout");
+
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+    const btnLogin = document.getElementById("btnLogin");
+    const loginError = document.getElementById("loginError");
+
+    const loveText = document.getElementById("loveText");
+    const gallery = document.getElementById("gallery");
+
+    function showLove(){
+      loginView.style.display = "none";
+      loveView.style.display = "block";
+      modePill.textContent = "mode : surprise";
+      btnLogout.style.display = "inline-block";
+
+      loveText.textContent = LOVE_MESSAGE;
+
+      gallery.innerHTML = "";
+      IMAGES.forEach((it) => {
+        const div = document.createElement("div");
+        div.className = "shot";
+        div.innerHTML = `
+          <img src="${it.src}" alt="${it.caption}">
+          <div class="caption">${it.caption}</div>
+        `;
+        gallery.appendChild(div);
+      });
+
+      // Petite pluie de coeurs à l'arrivée
+      burstHearts(18);
+    }
+
+    function showLogin(){
+      loveView.style.display = "none";
+      loginView.style.display = "grid";
+      modePill.textContent = "mode : login";
+      btnLogout.style.display = "none";
+      loginError.style.display = "none";
+      password.value = "";
+      username.focus();
+    }
+
+    function attemptLogin(){
+      const u = username.value.trim();
+      const p = password.value;
+      if(u === VALID_USER && p === VALID_PASS){
+        showLove();
+      }else{
+        loginError.style.display = "block";
+        burstHearts(6);
+      }
+    }
+
+    btnLogin.addEventListener("click", attemptLogin);
+    password.addEventListener("keydown", (e) => {
+      if(e.key === "Enter") attemptLogin();
+    });
+    username.addEventListener("keydown", (e) => {
+      if(e.key === "Enter") attemptLogin();
+    });
+
+    btnLogout.addEventListener("click", showLogin);
+
+    // --------------------------
+    // 3) COEURS ANIMÉS
+    // --------------------------
+    const heartsLayer = document.getElementById("hearts");
+    const btnHearts = document.getElementById("btnHearts");
+
+    const HEARTS = ["💗","💖","💘","💞","💕","❤️","💓"];
+
+    function spawnHeart(count = 1){
+      for(let i=0;i<count;i++){
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.textContent = HEARTS[Math.floor(Math.random()*HEARTS.length)];
+
+        const left = Math.random()*100;
+        const dur = 6 + Math.random()*6;        // 6..12s
+        const drift = (Math.random()*2 - 1) * 120; // -120..120px
+        const scale = 0.8 + Math.random()*1.4;  // 0.8..2.2
+        const rot = (Math.random()*2 - 1) * 50; // -50..50deg
+
+        h.style.left = left + "vw";
+        h.style.setProperty("--drift", drift + "px");
+        h.style.setProperty("--scale", scale);
+        h.style.setProperty("--rot", rot + "deg");
+        h.style.animationDuration = dur + "s";
+        h.style.fontSize = (14 + Math.random()*22) + "px";
+
+        heartsLayer.appendChild(h);
+        h.addEventListener("animationend", () => h.remove());
+      }
+    }
+
+    function burstHearts(n=12){
+      spawnHeart(n);
+    }
+
+    btnHearts.addEventListener("click", () => burstHearts(20));
+
+    // Coeurs réguliers
+    setInterval(() => spawnHeart(2), 900);
+
+    // Focus initial
+    username.focus();
+  </script>
+</body>
+</html>
